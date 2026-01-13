@@ -1,0 +1,134 @@
+.profile-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #0f172a;
+}
+
+.profile-header p {
+    margin: 0.5rem 0 0;
+    color: #64748b;
+}
+
+.status-badge.online {
+    background: #f0fdf4;
+    color: #16a34a;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* Card Styling */
+.profile-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.info-item label {
+    display: block;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-bottom: 4px;
+}
+
+.info-item p {
+    margin: 0;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.driver-id {
+    font-size: 1.2rem;
+}
+
+.item-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-field-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+}
+
+/* Statistics Styles */
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.stat-box label {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 8px 0 0;
+}
+
+/* Buttons */
+.btn-edit {
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-logout-footer {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.footer-icon {
+    width: 18px;
+    height: 18px;
+}

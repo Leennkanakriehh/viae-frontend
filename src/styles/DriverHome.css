@@ -1,0 +1,160 @@
+/* DriverHome.css */
+
+.main-content {
+    padding: 2rem;
+    background-color: #f8fafc;
+    /* Light background for contrast */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    /* Space between cards */
+}
+
+/* 1. Card Base Style */
+.status-card,
+.main-status-area,
+.stat-card {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* 2. Availability Section */
+.status-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 3. Main Active Ride Area (The middle section) */
+.main-status-area {
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.main-status-area p {
+    color: #64748b;
+    margin-top: 8px;
+}
+
+/* 4. Stats Grid (The 3 cards at the bottom) */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Creates 3 equal columns */
+    gap: 20px;
+}
+
+.stat-label {
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Responsive: Stack cards on mobile */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Fix the Centering Problem --- */
+.main-content {
+    align-items: stretch !important;
+    /* Force cards to take full width */
+    max-width: 1000px;
+    /* Better width for dashboard */
+    margin: 0 auto;
+}
+
+/* --- Activity Component Styling --- */
+.activity-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity-text h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.status-on {
+    color: #10b981;
+    font-weight: bold;
+}
+
+.status-off {
+    color: #64748b;
+    font-weight: bold;
+}
+
+/* Toggle Switch Style */
+.toggle-btn {
+    width: 50px;
+    height: 26px;
+    border-radius: 50px;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.toggle-btn.on {
+    background-color: #000;
+}
+
+.toggle-btn.off {
+    background-color: #cbd5e1;
+}
+
+.slider {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: 0.3s;
+}
+
+.toggle-btn.on .slider {
+    left: 27px;
+}
+
+/* --- Active Ride Styling --- */
+.no-ride-content .icon-circle {
+    width: 60px;
+    height: 60px;
+    background: #f1f5f9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.no-ride-content h3 {
+    margin: 0;
+    color: #1e293b;
+}

@@ -1,0 +1,139 @@
+/* Drivers.css */
+
+.drivers-page {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    /* Light grey background for the page */
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: #333;
+}
+
+/* Header Section */
+.drivers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.drivers-header h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.drivers-header p {
+    margin: 0.25rem 0 0;
+    color: #64748b;
+}
+
+.add-driver-btn {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.add-driver-btn:hover {
+    background-color: #334155;
+}
+
+/* Card Container */
+.drivers-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f1f5f9;
+}
+
+.drivers-card h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #1e293b;
+}
+
+/* Table Styling */
+.drivers-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.drivers-table th {
+    padding: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: none;
+}
+
+.drivers-table td {
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.drivers-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status Pills */
+.status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status.online {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status.offline {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+
+/* Action Buttons */
+.icon-btn {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 6px;
+    margin-right: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.icon-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+.icon-btn:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.icon-btn.delete img {
+    filter: invert(34%) sepia(85%) saturate(2643%) hue-rotate(338deg) brightness(91%) contrast(98%);
+    /* This filter turns a black icon red; adjust if your icon is already red */
+}
+
+.icon-btn.delete:hover {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+}

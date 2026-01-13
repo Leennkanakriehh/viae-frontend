@@ -1,0 +1,110 @@
+/* 1. Layout Wrapper */
+.admin-layout {
+    display: flex;
+    /* Sidebar and Main Content sit side-by-side */
+    min-height: 100vh;
+    background-color: #f8fafc;
+    width: 100%;
+}
+
+/* 2. Sidebar Container */
+.admin-sidebar {
+    width: 260px;
+    height: 100vh;
+    background-color: #ffffff;
+    border-right: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    box-sizing: border-box;
+    position: sticky;
+    /* Sticky is better than Fixed for flex layouts */
+    left: 0;
+    top: 0;
+}
+
+/* 3. Header & Brand */
+.sidebar-header {
+    padding: 0.5rem 1rem 1.5rem;
+}
+
+.sidebar-logo {
+    height: 32px;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-subtitle {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin: 0;
+}
+
+/* 4. Navigation Links */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+    /* Pushes Footer to the bottom */
+    margin-top: 1rem;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    color: #475569;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+/* 5. Icon Scaling & Color Changes */
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    opacity: 0.7;
+}
+
+/* Active State */
+.sidebar-link.active {
+    background-color: #eff6ff;
+    /* Light blue from design */
+    color: #2563eb;
+    /* Brand blue */
+    font-weight: 600;
+}
+
+.sidebar-link.active .nav-icon {
+    opacity: 1;
+    /* Turns black car/dashboard/user icons into Blue #2563eb */
+    filter: invert(31%) sepia(94%) saturate(1814%) hue-rotate(213deg) brightness(96%) contrast(105%);
+}
+
+.sidebar-link:hover:not(.active) {
+    background-color: #f8fafc;
+    color: #2563eb;
+}
+
+/* 6. Footer Section (Settings/Logout) */
+.sidebar-footer {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* 7. The Main Content Area (IMPORTANT) */
+.admin-main-content {
+    flex: 1;
+    /* This fills the remaining width of the screen */
+    padding: 2.5rem;
+    background-color: #f8fafc;
+    overflow-y: auto;
+}

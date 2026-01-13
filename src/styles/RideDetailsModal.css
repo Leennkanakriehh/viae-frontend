@@ -1,0 +1,19 @@
+.location-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.location-icon {
+    margin-top: 4px;
+}
+
+.location-icon.pickup {
+    color: #0d6efd;
+    /* Bootstrap blue */
+}
+
+.location-icon.destination {
+    color: #fd7e14;
+    /* Bootstrap orange */
+}
