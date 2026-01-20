@@ -13,6 +13,7 @@ import RoleSelect from './RoleSelect.jsx';
 import AdminHome from './admin/AdminHome.jsx';
 import RideRequests from './admin/RideRequests.jsx';
 import Drivers from './admin/Drivers.jsx';
+import PendingDrivers from './admin/PendingDrivers.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -39,10 +40,13 @@ const router = createBrowserRouter([
             element: <RideRequests />
           },
           {
-            path: "drivers",
+            path: "admin/drivers",
             element: <Drivers />
           },
-
+          {
+            path: "admin/pending-drivers",
+            element: < PendingDrivers />
+          }
         ]
       },
       {

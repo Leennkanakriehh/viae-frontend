@@ -7,37 +7,29 @@ import { viaeContext } from "../ViaeContext";
 export default function EditDriverModal({ driver, ...props }) {
     const { updateDriver } = useContext(viaeContext)
 
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [phone, setPhone] = useState("");
-    const [car, setCar] = useState("");
-    const [plate, setPlate] = useState("");
+    const [isOnline, setIsOnline] = useState(false);
 
     useEffect(() => {
         if (driver) {
-            setName(driver.name);
-            setEmail(driver.email);
+            setUsername(driver.username);
             setPhone(driver.phone);
-            setCar(driver.car);
-            setPlate(driver.plate);
+            setIsOnline(driver.status === "Online");
         }
-    }, [driver])
+    }, [driver]);
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        const updatedDriver = {
-            ...driver,
-            name,
-            email,
+        updateDriver(driver.id, {
+            username,
             phone,
-            car,
-            plate,
-        }
+            is_online: isOnline
+        });
 
-        updateDriver(updatedDriver)
-        props.onHide()
+        onHide();
     } if (!driver) return null;
+
 
     return (
         <Modal
@@ -54,33 +46,26 @@ export default function EditDriverModal({ driver, ...props }) {
             <Modal.Body>
                 <form className="driver-form" onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Full Name</label>
-                        <input value={name} onChange={(e) => setName(e.target.value)} />
+                        <label>Username</label>
+                        <input value={username} onChange={(e) => setUsername(e.target.value)} />
                     </div>
 
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label>Email</label>
-                            <input value={email} onChange={(e) => setEmail(e.target.value)} />
-                        </div>
 
-                        <div className="form-group">
-                            <label>Phone</label>
-                            <input value={phone} onChange={(e) => setPhone(e.target.value)} />
-                        </div>
-                    </div>
+                    <label>Phone</label>
+                    <input
+                        value={phone}
+                        onChange={e => setPhone(e.target.value)}
+                        required
+                    />
 
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label>Vehicle</label>
-                            <input value={car} onChange={(e) => setCar(e.target.value)} />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Plate</label>
-                            <input value={plate} onChange={(e) => setPlate(e.target.value)} />
-                        </div>
-                    </div>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={isOnline}
+                            onChange={e => setIsOnline(e.target.checked)}
+                        />
+                        Online
+                    </label>
 
                     <div className="popup-actions">
                         <button type="submit" className="btn-submit">

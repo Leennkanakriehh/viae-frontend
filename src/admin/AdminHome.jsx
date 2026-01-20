@@ -1,17 +1,21 @@
 import StatCard from "./statCard";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { viaeContext } from "../ViaeContext";
 import userIcon from "../assets/users.png";
 import carIcon from "../assets/car.png";
 import checked from "../assets/checked.png";
 import clock from "../assets/clock.png"
 import "../styles/AdminHome.css"
-import RideRequests from "./RideRequests";
 import RideTable from "./RideTable";
+import { Button } from "react-bootstrap";
+import CreateRideModal from "./CreateRideModal";
 
 export default function AdminHome() {
+    const [modalShow, setModalShow] = useState(false);
+
     const { stats } = useContext(viaeContext)
     const { rides } = useContext(viaeContext)
+
 
     const displayStats = [
         { label: "Total Rides Today", value: stats.totRidesDay, icon: carIcon },
@@ -29,7 +33,16 @@ export default function AdminHome() {
                 {displayStats.map((item, i) => (<StatCard key={i} {...item} />))}
             </div>
             <div>
-                <RideTable />
+                <Button variant="primary" onClick={() => setModalShow(true)}>
+                    Create Ride
+                </Button>
+
+                <CreateRideModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                />
+
+                <RideTable rides={rides} />
             </div>
         </div>
     )

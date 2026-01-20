@@ -3,20 +3,23 @@ import { viaeContext } from "../ViaeContext";
 import editIcon from "../assets/edit.png";
 import deleteIcon from "../assets/delete.png";
 import "../styles/AdminDrivers.css"
-import AddDriverModal from "./AddDriverModal";
 import EditDriverModal from "./EditDriverModal";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip'
 
 export default function Drivers() {
-    const { drivers, deleteDriver } = useContext(viaeContext)
+    const { drivers, deleteDriver, loadingDrivers, driversError } = useContext(viaeContext)
     const [displayModal, setDisplayModal] = useState(false)
     const [displayEditModal, setDisplayEditModal] = useState(false)
     const [editingDriver, setEditingDriver] = useState(null)
 
-    function handleClick() {
-        setDisplayModal(true)
+    if (loadingDrivers) {
+        return <p>Loading drivers...</p>;
     }
+    if (driversError) {
+        return <p>{driversError}</p>;
+    }
+
     function handleClose() {
         setDisplayModal(false)
     }
@@ -36,8 +39,6 @@ export default function Drivers() {
                     <h1>Drivers</h1>
                     <p>Manage your fleet drivers</p>
                 </div>
-                <button className="add-driver-btn" onClick={handleClick}>Add Driver</button>
-                <AddDriverModal show={displayModal} onHide={handleClose} />
             </div>
 
 
@@ -62,10 +63,10 @@ export default function Drivers() {
                         {drivers.map((driver) => (
                             <tr key={driver.id}>
                                 <td>{driver.id}</td>
-                                <td>{driver.name}</td>
+                                <td>{driver.username}</td>
                                 <td>{driver.email}</td>
                                 <td>{driver.phone}</td>
-                                <td>{driver.car} - {driver.plate}</td>
+                                <td>{driver.car || "-"} - {driver.plate}</td>
                                 <td>
                                     <span className={`status ${driver.status.toLowerCase()}`}>
                                         {driver.status}

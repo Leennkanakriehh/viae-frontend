@@ -25,9 +25,14 @@ function AdminSidebar({ image }) {
                     <span>Ride Requests</span>
                 </NavLink>
 
-                <NavLink to="drivers" className="sidebar-link">
+                <NavLink to="admin/drivers" className="sidebar-link">
                     <img src={userIcon} alt="" className="nav-icon" />
                     <span>Drivers</span>
+                </NavLink>
+
+                <NavLink to="admin/pending-drivers" className="sidebar-link">
+                    <img src={userIcon} alt="" className="nav-icon" />
+                    <span>Pending Drivers</span>
                 </NavLink>
 
             </nav>

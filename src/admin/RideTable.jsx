@@ -3,13 +3,12 @@ import { useContext, useState } from "react";
 import { viaeContext } from "../ViaeContext";
 import RideDetailsModal from "./RideDetailsModal";
 
-export default function RideTable() {
-    const { rides, drivers, assignDriver } = useContext(viaeContext);
+export default function RideTable({ rides }) {
+    const { drivers, assignDriver } = useContext(viaeContext);
     const [assigningRideId, setAssigningRideId] = useState(null);
     const [viewModal, setViewModal] = useState(false)
-    const [selectedRide, setSelectedRide] = useState("")
+    const [selectedRide, setSelectedRide] = useState(null);
 
-    // console.log("drivers:", drivers)
     function handleClick() {
         setViewModal(true)
     }
@@ -45,7 +44,7 @@ export default function RideTable() {
                         <td>{ride.requestedAt ?? "—"}</td>
                         <td>
                             <div className="action-cell">
-                                {ride.status === "Pending" && assigningRideId !== ride.id && (
+                                {ride.status?.toLowerCase() === "pending" && assigningRideId !== ride.id && (
                                     <button
                                         className="btn-outline"
                                         onClick={() => setAssigningRideId(ride.id)}
@@ -57,29 +56,38 @@ export default function RideTable() {
                                 {assigningRideId === ride.id && (
                                     <select
                                         defaultValue=""
+                                        disabled={assigningRideId === "loading"}
                                         onChange={(e) => {
-                                            assignDriver(ride.id, e.target.value);
+                                            const driverId = e.target.value;
+                                            if (!driverId) return;
+
+                                            setAssigningRideId("loading");
+                                            assignDriver(ride.id, driverId);
                                             setAssigningRideId(null);
                                         }}
                                     >
                                         <option value="" disabled>Select driver</option>
-                                        {drivers.map(driver => (
-                                            <option key={driver.id} value={driver.id}>
-                                                {driver.username}
-                                            </option>
-                                        ))}
+                                        {(drivers || [])
+                                            .filter(d => d.status === "Online")
+                                            .map(driver => (
+                                                <option key={driver.id} value={driver.id}>
+                                                    {driver.username}
+                                                </option>
+                                            ))}
                                     </select>
                                 )}
+
                                 <button className="btn-outline" onClick={() => { handleClick(); setSelectedRide(ride) }}>View Details</button>
                             </div>
                         </td>
                     </tr>
                 ))}
-                <RideDetailsModal show={viewModal}
+                <RideDetailsModal
+                    show={viewModal}
                     onHide={() => setViewModal(false)}
-                    ride={selectedRide} selectedRide>
+                    ride={selectedRide}
+                />
 
-                </RideDetailsModal>
 
             </tbody>
         </table>
