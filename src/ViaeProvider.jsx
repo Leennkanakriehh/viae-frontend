@@ -261,13 +261,7 @@ export function ViaeProvider({ children }) {
         pendingRequests: rides.filter(r => r.status === "Pending").length,
         completedToday: rides.filter(r => r.status === "Completed").length
     }
-    const addRide = (ride) => {
-        setRides(prev => [...prev, ride]);
-    }
 
-    const addDriver = (driver) => {
-        setDrivers(prev => [...prev, driver])
-    }
 
 
 
