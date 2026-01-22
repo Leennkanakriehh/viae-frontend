@@ -63,7 +63,7 @@ export function ViaeProvider({ children }) {
         // reset auth
         setUser(null);
 
-        // reset app state (important)
+        // reset app state
         setDrivers([]);
         setPendingDrivers([]);
         setRides([]);
@@ -88,40 +88,49 @@ export function ViaeProvider({ children }) {
     //----------------------------------------------
     //externalAPI
     async function geocodeAddress(address) {
-        if (!address) {
-            throw new Error("Address is required");
-        }
-
-        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-
-        const res = await fetch(url, {
-            headers: {
-                "Accept": "application/json"
+        try {
+            if (!address) {
+                throw new Error("Address is required");
             }
-        });
 
-        if (!res.ok) {
-            throw new Error("Failed to fetch geocoding data");
+            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+
+            const res = await fetch(url, {
+                headers: {
+                    "Accept": "application/json"
+                }
+            });
+
+            if (!res.ok) {
+                throw new Error("Failed to fetch data");
+            }
+
+            const data = await res.json();
+
+            if (!data.length) {
+                throw new Error("Address not found");
+            }
+
+            return {
+                lat: data[0].lat,
+                lon: data[0].lon,
+                display: data[0].display_name
+            }
+        } catch (err) {
+            if (err.name === "AbortError") {
+                throw new Error("requesttimed out");
+            }
+
+            throw new Error(err.message)
         }
 
-        const data = await res.json();
-
-        if (!data.length) {
-            throw new Error("Address not found");
-        }
-
-        return {
-            lat: data[0].lat,
-            lon: data[0].lon,
-            display: data[0].display_name
-        };
     }
 
 
     //----driver opoerations FOR ADMIN------------------------
     //1. fetch all drivers
     useEffect(() => {
-        // Stop here if user isn't an admin
+        // stop if user isn't an admin
         if (authLoading || !user || user.role !== "admin") return;
 
         async function loadDrivers() {
@@ -141,7 +150,7 @@ export function ViaeProvider({ children }) {
                     email: d.email,
                     phone: d.phone,
                     status: d.is_online ? "Online" : "Offline",
-                }));
+                }))
 
                 setDrivers(normalized);
             } catch (err) {
@@ -152,7 +161,7 @@ export function ViaeProvider({ children }) {
         }
 
         loadDrivers();
-    }, [authLoading, user, refreshDrivers]);
+    }, [authLoading, user, refreshDrivers])
 
 
 
@@ -189,7 +198,6 @@ export function ViaeProvider({ children }) {
 
             if (!res.ok) throw new Error("Failed to approve");
 
-            // 🔄 trigger refresh
             setRefreshPending(prev => prev + 1);
             setRefreshDrivers(prev => prev + 1);
 
@@ -198,7 +206,6 @@ export function ViaeProvider({ children }) {
         }
     }
 
-    //3.reject pending on id
     async function rejectPendingDriver(id) {
         try {
             const res = await authFetch(
@@ -247,7 +254,7 @@ export function ViaeProvider({ children }) {
             );
 
             if (!res.ok) {
-                throw new Error("Failed to update driver");
+                throw new Error("failed to update driver");
             }
 
             const updated = await res.json();
@@ -361,7 +368,7 @@ export function ViaeProvider({ children }) {
 
             if (!res.ok) {
                 const err = await res.json();
-                throw new Error(err.error || "Failed to create ride");
+                throw new Error(err.error || "Failed");
             }
             setRefreshRides(prev => prev + 1);
         } catch (err) {
@@ -401,7 +408,7 @@ export function ViaeProvider({ children }) {
             alert(err.message);
         }
     }
-    // driver-only: rides assigned to the logged-in driver
+    // (DRIVERS ONLY) rides assigned to the logged-in driver
     const assignedRides = user?.role === "driver" ? rides : [];
     const stats = {
         totRidesDay: rides.length,
@@ -465,8 +472,7 @@ export function ViaeProvider({ children }) {
         async function loadDriverVehicle() {
             try {
                 setLoadingVehicle(true);
-                // Based on your routes, we use the general GET /:id or a specific driver route
-                // If your backend doesn't have "api/vehicles/me", we'd use the driver_id
+
                 const res = await authFetch(`${BASE_URL}/api/vehicles/driver/${user.id}`);
 
                 if (res.ok) {
@@ -494,7 +500,7 @@ export function ViaeProvider({ children }) {
             if (!res.ok) throw new Error("Failed to update vehicle");
 
             const updated = await res.json();
-            setVehicle(updated); // Sync local state
+            setVehicle(updated);
             return { success: true };
         } catch (err) {
             alert(err.message);
@@ -503,7 +509,6 @@ export function ViaeProvider({ children }) {
     }
 
     async function saveVehicle(vehicleData) {
-        // Determine if we are updating an existing vehicle or creating a new one
         const isUpdate = !!vehicle?.id;
         const url = isUpdate
             ? `${BASE_URL}/api/vehicles/${vehicle.id}`
@@ -517,7 +522,7 @@ export function ViaeProvider({ children }) {
                 method: method,
                 body: JSON.stringify({
                     ...vehicleData,
-                    driver_id: user.id // Ensure backend knows which driver this belongs to
+                    driver_id: user.id
                 }),
             });
 
@@ -528,7 +533,6 @@ export function ViaeProvider({ children }) {
 
             const data = await res.json();
 
-            // Critical: Update the vehicle state so the UI (VehicleManager) refreshes
             setVehicle(data);
             return { success: true };
         } catch (err) {
@@ -549,7 +553,7 @@ export function ViaeProvider({ children }) {
             setLoadingVehicle(true);
             const res = await authFetch(url, {
                 method: method,
-                headers: { "Content-Type": "application/json" }, // Explicitly add this here
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     ...vehicleData,
                     driver_id: user.id
