@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form'; // Using Bootstrap Form for better alignment
+import Form from 'react-bootstrap/Form';
 import { useState, useContext, useEffect } from "react";
 import { viaeContext } from "../ViaeContext";
 
@@ -17,18 +17,16 @@ export default function EditDriverModal({ driver, onHide, ...props }) {
             setPhone(driver.phone || "");
             setIsOnline(driver.status === "Online");
         }
-    }, [driver]);
+    }, [driver])
 
     if (!driver) return null;
 
     const handleSubmit = (e) => {
         e.preventDefault();
         updateDriver(driver.id, {
-            username,
-            phone,
-            is_online: isOnline
-        });
-        onHide(); // Close modal after update
+            username, phone, is_online: isOnline
+        })
+        onHide()
     };
 
     return (

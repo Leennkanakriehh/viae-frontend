@@ -17,7 +17,7 @@ export default function Drivers() {
     const handleEdit = (driver) => {
         setEditingDriver(driver);
         setDisplayEditModal(true);
-    };
+    }
 
     return (
         <div className="drivers-page">
@@ -86,5 +86,5 @@ export default function Drivers() {
                 driver={editingDriver}
             />
         </div>
-    );
+    )
 }

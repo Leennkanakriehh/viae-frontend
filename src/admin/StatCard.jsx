@@ -8,7 +8,6 @@ export default function StatCard({ label, value, icon: Icon, colorClass }) {
                     <h2 className="stat-val">{value}</h2>
                 </div>
                 <div className="stat-icon-wrapper">
-                    {/* Render the Lucide icon directly */}
                     <Icon size={24} strokeWidth={2.5} />
                 </div>
             </div>

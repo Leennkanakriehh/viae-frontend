@@ -52,7 +52,7 @@ function AdminSidebar({ image }) {
                 </button>
             </div>
         </aside>
-    );
+    )
 }
 
 export default AdminSidebar;

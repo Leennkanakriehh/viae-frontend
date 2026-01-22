@@ -13,7 +13,7 @@ export default function RideTable({ rides }) {
     const handleViewDetails = (ride) => {
         setSelectedRide(ride);
         setViewModal(true);
-    };
+    }
 
     return (
         <div className="table-responsive">
@@ -52,7 +52,6 @@ export default function RideTable({ rides }) {
 
                             <td>
                                 <div className="action-cell d-flex gap-2">
-                                    {/* LOGIC FIX START */}
                                     {ride.status === "Pending" && (
                                         <>
                                             {assigningRideId !== ride.id ? (
@@ -67,7 +66,7 @@ export default function RideTable({ rides }) {
                                                     className="form-select-sm"
                                                     defaultValue=""
                                                     autoFocus
-                                                    onBlur={() => setAssigningRideId(null)} // Close if user clicks away
+                                                    onBlur={() => setAssigningRideId(null)}
                                                     onChange={(e) => {
                                                         const driverId = e.target.value;
                                                         if (!driverId) return;
@@ -87,7 +86,6 @@ export default function RideTable({ rides }) {
                                             )}
                                         </>
                                     )}
-                                    {/* LOGIC FIX END */}
 
                                     <button className="btn-details" onClick={() => handleViewDetails(ride)}>
                                         Details
@@ -107,5 +105,5 @@ export default function RideTable({ rides }) {
                 />
             )}
         </div>
-    );
+    )
 }

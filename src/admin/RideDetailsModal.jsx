@@ -10,7 +10,6 @@ export default function RideDetailsModal({ onHide, ride, show }) {
 
     if (!ride) return null;
 
-    // Find the driver object if one is assigned
     const driver = drivers?.find(d => d.id === ride.driverId || d.id === ride.driver);
 
     return (

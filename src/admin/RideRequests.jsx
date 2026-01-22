@@ -10,9 +10,7 @@ export default function RideRequests() {
     if (loadingRides) return <div className="p-5 text-center">Loading rides...</div>;
     if (ridesError) return <div className="alert alert-danger">{ridesError}</div>;
 
-    const filteredRides = rides.filter(r =>
-        statusFilter === "" ? true : r.status === statusFilter
-    );
+    const filteredRides = rides.filter(r => statusFilter === "" ? true : r.status === statusFilter)
 
     return (
         <div className="ride-requests-page">
@@ -39,5 +37,5 @@ export default function RideRequests() {
                 <RideTable rides={filteredRides} />
             </div>
         </div>
-    );
+    )
 }

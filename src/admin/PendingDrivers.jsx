@@ -15,7 +15,7 @@ export default function PendingDrivers() {
 
     useEffect(() => {
         fetchPendingDrivers();
-    }, []);
+    }, [])
 
     if (loadingPendingDrivers) return <div className="p-5 text-center">Loading applications...</div>;
     if (pendingDriversError) return <div className="alert alert-danger m-4">{pendingDriversError}</div>;
@@ -90,5 +90,5 @@ export default function PendingDrivers() {
                 </table>
             </div>
         </div>
-    );
+    )
 }

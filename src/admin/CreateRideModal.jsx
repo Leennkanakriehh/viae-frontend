@@ -21,11 +21,8 @@ export default function CreateRideModal(props) {
     const [validatedDestination, setValidatedDestination] = useState(null);
 
     const handleChange = (e) => {
-        setForm(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }));
-    };
+        setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,7 +36,6 @@ export default function CreateRideModal(props) {
         try {
             setLoading(true);
 
-            // 🌍 Third-party API usage (OpenStreetMap)
             const pickupGeo = await geocodeAddress(form.pickup_location);
             const destGeo = await geocodeAddress(form.destination);
 
@@ -50,20 +46,15 @@ export default function CreateRideModal(props) {
                 ride_code: form.ride_code,
                 pickup_location: pickupGeo.display,
                 destination: destGeo.display,
-            });
+            })
 
-            // reset + close
-            setForm({
-                ride_code: "",
-                pickup_location: "",
-                destination: "",
-            });
+            setForm({ ride_code: "", pickup_location: "", destination: "" })
             setValidatedPickup(null);
             setValidatedDestination(null);
 
             props.onHide();
         } catch (err) {
-            setError(err.message || "Failed to create ride");
+            setError(err.message || "failed to create ride");
         } finally {
             setLoading(false);
         }
