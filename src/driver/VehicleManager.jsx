@@ -10,9 +10,8 @@ export default function VehicleManager() {
         plate_number: "",
         color: "",
         year: ""
-    });
+    })
 
-    // Sync form with existing vehicle data if it exists
     useEffect(() => {
         if (vehicle) {
             setFormData({
@@ -20,14 +19,14 @@ export default function VehicleManager() {
                 plate_number: vehicle.plate_number || "",
                 color: vehicle.color || "",
                 year: vehicle.year || ""
-            });
+            })
         }
-    }, [vehicle]);
+    }, [vehicle])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         await saveVehicle(formData);
-    };
+    }
 
     if (loadingVehicle) return <div className="spinner-border text-primary"></div>;
 
@@ -103,5 +102,5 @@ export default function VehicleManager() {
                 </form>
             </MDBCardBody>
         </MDBCard>
-    );
+    )
 }

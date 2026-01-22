@@ -26,7 +26,7 @@ function Header({ image }) {
     const handleLogout = () => {
         logout();
         navigate("/login", { replace: true });
-    };
+    }
 
     return (
         <MDBNavbar light bgColor="white" className="header-smooth py-3 border-bottom sticky-top">

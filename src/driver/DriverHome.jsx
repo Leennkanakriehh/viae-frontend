@@ -11,12 +11,10 @@ import {
 import Activity from "./Activity";
 import ActiveRide from "./ActiveRide";
 
-// DELETE THE LINE THAT WAS HERE (outside the function)
 
 function DriverHome() {
-    // MOVE IT HERE inside the function
     const {
-        user, // Added user here
+        user,
         driverProfile,
         loadingDriverProfile,
         toggleAvailability
@@ -28,10 +26,9 @@ function DriverHome() {
                 <div className="spinner-border text-primary mb-3" role="status"></div>
                 <p className="text-muted fw-medium">Syncing your dashboard...</p>
             </div>
-        );
+        )
     }
 
-    /* ... rest of your status checks (pending, rejected, etc) ... */
 
     if (!driverProfile) {
         return (
@@ -57,7 +54,6 @@ function DriverHome() {
                             <User size={24} />
                         </div>
                         <div>
-                            {/* Use user.username from context safely */}
                             <h2 className="fw-bold mb-0">Hello, {user?.username || driverProfile.username}!</h2>
                             <p className="text-muted mb-0 small">Check your stats and active tasks below.</p>
                         </div>

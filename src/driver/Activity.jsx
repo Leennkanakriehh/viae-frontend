@@ -33,7 +33,7 @@ function Activity({ active, onToggle }) {
                 {active ? "Go Offline" : "Go Online Now"}
             </MDBBtn>
         </div>
-    );
+    )
 }
 
 export default Activity;

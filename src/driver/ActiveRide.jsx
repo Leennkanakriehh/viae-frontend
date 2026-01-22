@@ -2,7 +2,7 @@ import { MDBRow, MDBCol, MDBBtn } from "mdb-react-ui-kit";
 import { MapPin, Navigation, Phone, User } from "lucide-react";
 
 function ActiveRide({ ride }) {
-    // Placeholder state if no ride is active
+    //no ride assigned +++ uncompleted
     if (!ride) {
         return (
             <div className="p-5 text-center">
@@ -12,7 +12,7 @@ function ActiveRide({ ride }) {
                 <h5 className="text-muted fw-medium">No Active Ride</h5>
                 <p className="small text-secondary mb-0">New requests will appear here once you're online.</p>
             </div>
-        );
+        )
     }
 
     return (
@@ -61,14 +61,13 @@ function ActiveRide({ ride }) {
                             <Phone size={18} className="text-primary" />
                         </MDBBtn>
                     </div>
-                </MDBCol> {/* <--- This was the missing closing tag */}
+                </MDBCol>
             </MDBRow>
 
             <MDBBtn className="w-100 py-3 rounded-4 shadow-sm fw-bold">
                 Complete Ride
             </MDBBtn>
         </div>
-    );
+    )
 }
-
 export default ActiveRide;
