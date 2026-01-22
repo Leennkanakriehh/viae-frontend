@@ -1,19 +1,44 @@
-.location-item {
+.uppercase-label {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* Vertical line for the route appearance */
+.icon-column {
     display: flex;
-    gap: 12px;
+    flex-direction: column;
+    align-items: center;
+    width: 20px;
+}
+
+.icon-column .line {
+    width: 2px;
+    height: 30px;
+    background: #e2e8f0;
+    margin: 4px 0;
+}
+
+/* Details Grid */
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.detail-item {
+    display: flex;
     align-items: flex-start;
+    gap: 12px;
 }
 
-.location-icon {
-    margin-top: 4px;
+.detail-item span {
+    font-size: 0.9rem;
 }
 
-.location-icon.pickup {
-    color: #0d6efd;
-    /* Bootstrap blue */
-}
-
-.location-icon.destination {
-    color: #fd7e14;
-    /* Bootstrap orange */
+.smooth-modal .modal-content {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }

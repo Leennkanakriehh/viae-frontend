@@ -1,49 +1,55 @@
-import StatCard from "./statCard";
 import { useState, useContext } from "react";
 import { viaeContext } from "../ViaeContext";
-import userIcon from "../assets/users.png";
-import carIcon from "../assets/car.png";
-import checked from "../assets/checked.png";
-import clock from "../assets/clock.png"
-import "../styles/AdminHome.css"
+import { Car, Users, Clock, CheckCircle, Plus } from "lucide-react";
 import RideTable from "./RideTable";
-import { Button } from "react-bootstrap";
 import CreateRideModal from "./CreateRideModal";
+import "../styles/AdminHome.css";
 
 export default function AdminHome() {
     const [modalShow, setModalShow] = useState(false);
-
-    const { stats } = useContext(viaeContext)
-    const { rides } = useContext(viaeContext)
-
+    const { stats, rides } = useContext(viaeContext);
 
     const displayStats = [
-        { label: "Total Rides Today", value: stats.totRidesDay, icon: carIcon },
-        { label: "Active Drivers", value: stats.activeDrivers, icon: userIcon },
-        { label: "Pending Requests", value: stats.pendingRequests, icon: clock },
-        { label: "Completed Today", value: stats.completedToday, icon: checked }
+        { label: "Daily Rides", value: stats.totRidesDay, icon: <Car />, color: "#0d6efd" },
+        { label: "Active Drivers", value: stats.activeDrivers, icon: <Users />, color: "#6610f2" },
+        { label: "Pending", value: stats.pendingRequests, icon: <Clock />, color: "#fd7e14" },
+        { label: "Completed", value: stats.completedToday, icon: <CheckCircle />, color: "#198754" }
     ]
 
-
     return (
-        <div>
-            <h1>Dashboard</h1>
-            <h5>Overview of your fleet operations</h5>
-            <div className="stats-grid">
-                {displayStats.map((item, i) => (<StatCard key={i} {...item} />))}
+        <div className="dashboard-container">
+            <header className="dashboard-header d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <h2 className="fw-bold">Fleet Overview</h2>
+                    <p className="text-muted mb-0">Monitor your operations in real-time</p>
+                </div>
+                <button className="btn btn-primary rounded-pill px-4 d-flex align-items-center" onClick={() => setModalShow(true)}>
+                    <Plus size={18} className="me-2" /> Create New Ride
+                </button>
+            </header>
+
+            <div className="stats-grid mb-5">
+                {displayStats.map((item, i) => (
+                    <div key={i} className="stat-card shadow-sm">
+                        <div className="stat-icon" style={{ color: item.color, backgroundColor: `${item.color}15` }}>
+                            {item.icon}
+                        </div>
+                        <div className="stat-info">
+                            <h3>{item.value}</h3>
+                            <p>{item.label}</p>
+                        </div>
+                    </div>
+                ))}
             </div>
-            <div>
-                <Button variant="primary" onClick={() => setModalShow(true)}>
-                    Create Ride
-                </Button>
 
-                <CreateRideModal
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                />
-
+            <div className="content-card shadow-sm">
+                <div className="card-header bg-white py-3 px-4 border-bottom">
+                    <h5 className="mb-0 fw-bold">Recent Ride Activity</h5>
+                </div>
                 <RideTable rides={rides} />
             </div>
+
+            <CreateRideModal show={modalShow} onHide={() => setModalShow(false)} />
         </div>
     )
 }

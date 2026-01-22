@@ -1,179 +1,82 @@
-:root {
-    --bg-color: #f0f7fa;
-    --text-main: #1a2b3c;
-    --admin-accent: #0f172a;
-    --driver-accent: #009688;
-    --brand-blue: #5c7cfa;
-}
-
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    overflow-x: hidden;
-}
-
-#root {
-    width: 100%;
-    margin: 0 auto;
-}
-
-.page-container {
+/* Base Page Style */
+.role-page-container {
+    background-color: #f8f9fa;
     min-height: 100vh;
+    width: 100%;
+}
+
+.role-logo-img {
+    height: 50px;
+    width: auto;
+}
+
+/* Card Styling - No fixed heights that cause shrinking */
+.custom-role-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    height: 100%;
+    /* Allows cards in the same row to match height */
+    transition: transform 0.2s ease;
+    border: 1px solid #eee;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    /* Reduced from 40px */
-    box-sizing: border-box;
-}
-
---- Logo Styling --- .logo-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-    /* Reduced spacing */
-}
-
-.role-logo {
-    height: 80px;
-    /* Reduced from 120px to save vertical space */
-    width: auto;
-    object-fit: contain;
-}
-
-.brand-icon {
-    font-size: 2.5rem;
-    color: var(--brand-blue);
-}
-
-.brand-name {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--brand-blue);
-    margin: 0;
-}
-
-/* --- Layout --- */
-.main-header {
-    margin-bottom: 25px;
-    /* Reduced from 50px */
     text-align: center;
 }
 
-.main-header h1 {
-    font-size: 2.2rem;
-    /* Smaller font */
-    margin: 0 0 5px 0;
+.custom-role-card:hover {
+    transform: translateY(-5px);
+    border-color: #0d6efd;
 }
 
-.main-header p {
-    color: #64748b;
-    font-size: 1rem;
-    /* Smaller font */
-}
-
-/* --- Cards --- */
-.card-container {
-    display: flex;
-    gap: 30px;
-    max-width: 1000px;
-    width: 100%;
-}
-
-.role-logo {
-    height: 120px;
-    /* Control the size here */
-    width: auto;
-    /* Maintain aspect ratio */
-    display: block;
-    object-fit: contain;
-}
-
-.role-card {
-    background: white;
-    flex: 1;
-    padding: 40px 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.icon-circle {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
+/* Icon Styles */
+.role-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
-    margin-bottom: 24px;
+    margin: 0 auto 1.5rem;
 }
 
-.admin-icon {
-    background-color: #eef2ff;
-    color: #4338ca;
+.admin-bg {
+    background: #e7f0ff;
+    color: #0d6efd;
 }
 
-.driver-icon {
-    background-color: #f0fdfa;
-    color: #0d9488;
+.driver-bg {
+    background: #fff2e7;
+    color: #fd7e14;
 }
 
-/* Lists and Buttons */
-.feature-list {
+/* Typography & Lists */
+.role-features {
+    text-align: left;
     list-style: none;
     padding: 0;
-    text-align: left;
-    margin: 0 0 30px 0;
-    width: 100%;
+    margin: 1.5rem 0;
+    flex-grow: 1;
+    /* Pushes the button to the bottom */
 }
 
-.feature-list li {
-    font-size: 0.95rem;
-    color: #475569;
-    margin-bottom: 12px;
-    padding-left: 24px;
+.role-features li {
+    padding-left: 25px;
     position: relative;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: #555;
 }
 
-.feature-list li::before {
+.role-features li::before {
     content: "•";
-    position: absolute;
-    left: 0;
-    color: #5c7cfa;
+    color: #0d6efd;
     font-weight: bold;
+    position: absolute;
+    left: 5px;
 }
 
-.btn {
-    width: 100%;
-    padding: 14px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 700;
-    color: white;
-    transition: transform 0.2s;
-}
-
-.btn:active {
-    transform: scale(0.98);
-}
-
-.btn-admin {
-    background-color: #020617;
-}
-
-.btn-driver {
-    background-color: #009688;
-}
-
-.footer {
-    margin-top: 60px;
-    color: #94a3b8;
-    font-size: 0.9rem;
+.role-footer {
+    font-size: 0.85rem;
+    padding-bottom: 2rem;
 }

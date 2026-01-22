@@ -4,13 +4,15 @@ import Header from './Header';
 
 function DriverDashboard() {
     return (
-        <>
-            <nav>
-                <Header image={logo}></Header>
+        <div className="driver-app-wrapper">
+            <nav className="mb-0">
+                <Header image={logo} />
             </nav>
-            <Outlet />
-        </>
-    )
-
+            <main className="dashboard-content">
+                <Outlet />
+            </main>
+        </div>
+    );
 }
+
 export default DriverDashboard;

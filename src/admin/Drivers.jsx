@@ -1,99 +1,90 @@
 import { useState, useContext } from "react";
 import { viaeContext } from "../ViaeContext";
-import editIcon from "../assets/edit.png";
-import deleteIcon from "../assets/delete.png";
-import "../styles/AdminDrivers.css"
+import { Edit, Trash2 } from "lucide-react";
+import "../styles/AdminDrivers.css";
 import EditDriverModal from "./EditDriverModal";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip'
+import Tooltip from 'react-bootstrap/Tooltip';
 
 export default function Drivers() {
-    const { drivers, deleteDriver, loadingDrivers, driversError } = useContext(viaeContext)
-    const [displayModal, setDisplayModal] = useState(false)
-    const [displayEditModal, setDisplayEditModal] = useState(false)
-    const [editingDriver, setEditingDriver] = useState(null)
+    const { drivers, deleteDriver, loadingDrivers, driversError } = useContext(viaeContext);
+    const [displayEditModal, setDisplayEditModal] = useState(false);
+    const [editingDriver, setEditingDriver] = useState(null);
 
-    if (loadingDrivers) {
-        return <p>Loading drivers...</p>;
-    }
-    if (driversError) {
-        return <p>{driversError}</p>;
-    }
+    if (loadingDrivers) return <div className="p-5 text-center">Loading drivers...</div>;
+    if (driversError) return <div className="alert alert-danger m-4">{driversError}</div>;
 
-    function handleClose() {
-        setDisplayModal(false)
-    }
-    function handleEdit() {
-        setDisplayEditModal(true)
-    }
-    const deleteTooltip = (
-        <Tooltip id="delete-tooltip">
-            Delete driver
-        </Tooltip>
-    )
+    const handleEdit = (driver) => {
+        setEditingDriver(driver);
+        setDisplayEditModal(true);
+    };
 
     return (
         <div className="drivers-page">
-            <div className="drivers-header">
-                <div>
-                    <h1>Drivers</h1>
-                    <p>Manage your fleet drivers</p>
-                </div>
+            <div className="drivers-header mb-4">
+                <h1>Fleet Management</h1>
+                <p className="text-muted">Manage and monitor your active driver network.</p>
             </div>
 
+            <div className="content-card shadow-sm border rounded bg-white">
+                <div className="p-4 border-bottom">
+                    <h3 className="m-0 fs-5">Active Drivers ({drivers.length})</h3>
+                </div>
 
-            <div className="drivers-card">
-                <h3>All Drivers ({drivers.length})</h3>
-
-                <table className="drivers-table">
+                <table className="data-table">
                     <thead>
                         <tr>
-                            <th>Driver ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Vehicle Info</th>
-                            <th>Status</th>
-                            <th>Total Rides</th>
-                            <th>Actions</th>
+                            <th>Driver Details</th>
+                            <th>Contact Info</th>
+                            <th>Vehicle & Plate</th>
+                            <th>Current Status</th>
+                            <th className="text-end">Actions</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         {drivers.map((driver) => (
                             <tr key={driver.id}>
-                                <td>{driver.id}</td>
-                                <td>{driver.username}</td>
-                                <td>{driver.email}</td>
-                                <td>{driver.phone}</td>
-                                <td>{driver.car || "-"} - {driver.plate}</td>
                                 <td>
-                                    <span className={`status ${driver.status.toLowerCase()}`}>
+                                    <div className="fw-bold">{driver.username}</div>
+                                    <div className="small text-muted">ID: #{String(driver.id).slice(-4)}</div>
+                                </td>
+                                <td>
+                                    <div>{driver.email}</div>
+                                    <div className="small text-secondary">{driver.phone}</div>
+                                </td>
+                                <td>
+                                    <div className="fw-medium text-dark">{driver.car || "No Vehicle"}</div>
+                                    <div className="small text-muted">{driver.plate}</div>
+                                </td>
+                                <td>
+                                    <span className={`status-badge ${driver.status.toLowerCase()}`}>
                                         {driver.status}
                                     </span>
                                 </td>
-                                <td>{driver.completedRides}</td>
                                 <td>
-                                    <button className="icon-btn"><img src={editIcon} alt="Edit" onClick={() => { handleEdit(); setEditingDriver(driver) }} /></button>
-                                    <OverlayTrigger
-                                        placement="right"
-                                        overlay={deleteTooltip}
-                                    >
-                                        <button className="icon-btn delete" onClick={() => deleteDriver(driver.id)}><img src={deleteIcon} alt="Delete" /></button>
-                                    </OverlayTrigger>
+                                    <div className="action-cell d-flex justify-content-end gap-2">
+                                        <button className="btn-details" onClick={() => handleEdit(driver)}>
+                                            <Edit size={16} />
+                                        </button>
+
+                                        <OverlayTrigger overlay={<Tooltip>Delete Driver</Tooltip>}>
+                                            <button className="btn-details text-danger" onClick={() => deleteDriver(driver.id)}>
+                                                <Trash2 size={16} />
+                                            </button>
+                                        </OverlayTrigger>
+                                    </div>
                                 </td>
                             </tr>
                         ))}
-                        {drivers.length === 0 && (
-                            <tr>
-                                <td colSpan="8" style={{ textAlign: 'center', padding: '20px' }}>No drivers found</td>
-                            </tr>
-                        )}
                     </tbody>
-                    <EditDriverModal show={displayEditModal} onHide={() => setDisplayEditModal(false)} driver={editingDriver} />
-
                 </table>
             </div>
+
+            <EditDriverModal
+                show={displayEditModal}
+                onHide={() => setDisplayEditModal(false)}
+                driver={editingDriver}
+            />
         </div>
-    )
+    );
 }

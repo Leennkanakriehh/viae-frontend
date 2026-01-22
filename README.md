@@ -1,16 +1,83 @@
-# React + Vite
+# Viae Frontend (React + Vite)
+```
+## 📌 Description
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Viae frontend provides a modern and responsive user interface for a role-based fleet and ride management system. It enables authenticated users to interact with the platform through dashboards tailored to their roles, supporting efficient management of drivers, rides, and availability within an organization.
 
-Currently, two official plugins are available:
+The frontend is responsible for handling user interactions, role-based navigation, and communication with backend APIs, ensuring a secure and user-friendly experience for both administrators and drivers.
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Application Idea – Viae (Frontend Perspective)
+```
+### System Overview
 
-## React Compiler
+Viae is a role-based fleet management web application designed to manage internal transportation operations within an organization. From a frontend perspective, the system provides intuitive dashboards and interfaces that allow users to perform tasks based on their assigned roles.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The overall system follows a full-stack architecture consisting of:
+- **React (with Vite)** for frontend user interaction and dashboards
+- **Node.js and Express** for backend API services
+- **PostgreSQL** for persistent data storage
+- **Role-Based Access Control (RBAC)** to ensure system security and data integrity
 
-## Expanding the ESLint configuration
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 👥 Target Users (Frontend)
+```
+### System Administrators
+- Manage and approve pending driver applications
+- Create and manage ride requests
+- Assign drivers to rides
+- View, update, and delete driver information
+- Monitor ride statuses and system activity through dashboards
+
+### Drivers
+- Apply for access to the platform
+- Manage their availability status
+- View assigned rides and ride history
+- Interact with ride actions such as starting or completing rides
+```
+
+## 🧾 User Requirements (Frontend)
+
+### Admin Requirements
+- Create an account and log in securely using email and password
+- View all registered drivers
+- Approve or reject pending driver applications
+- View all ride requests and their statuses
+- View available drivers and assign them to ride requests
+- Filter ride requests based on status
+- Create new ride requests
+- Update driver information
+- Log out securely from the system
+
+### Driver Requirements
+- Submit a request to create a driver account
+- Log in after receiving administrator approval
+- Set and update availability status
+- View assigned rides
+- Start or complete assigned rides
+- View personal profile information
+- Log out securely from the system
+
+
+
+## 🛠 Technologies Used (Frontend)
+
+- **React.js** – Component-based frontend framework
+- **Vite** – Fast development server and build tool
+- **React Router** – Client-side routing and navigation
+- **Context API** – Global state management
+- **Fetch API** – Communication with backend REST APIs
+- **MDB (Material Design for Bootstrap)** – UI components and styling
+- **LocalStorage** – Persisting authentication and session data
+
+---
+
+## 🚀 Getting Started (Frontend)
+
+Follow the steps below to run the frontend application locally:
+
+```bash
+cd viae-frontend
+npm install
+npm run dev

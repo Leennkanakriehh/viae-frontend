@@ -1,12 +1,9 @@
 import { Outlet } from "react-router-dom";
 import logo from "../assets/logo.png";
-import "../styles/sidebar.css";
 import AdminSidebar from "./AdminSideBar";
-
+import "../styles/sidebar.css";
 
 export default function AdminDashboard() {
-
-
     return (
         <div className="admin-layout">
             <AdminSidebar image={logo} />
@@ -16,4 +13,3 @@ export default function AdminDashboard() {
         </div>
     )
 }
-

@@ -1,58 +1,100 @@
+/* Container for the table */
+.content-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    border: 1px solid #f1f5f9;
+}
+
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
+    font-size: 0.95rem;
 }
 
+/* Header Styling - Smooth & Subtle */
 .data-table th {
-    text-align: left;
-    padding: 12px;
+    background-color: #f8fafc;
     color: #64748b;
-    font-size: 0.85rem;
-    border-bottom: 1px solid #f1f5f9;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 16px 24px;
+    text-align: left;
+    border-bottom: 2px solid #f1f5f9;
 }
 
+/* Row Styling */
 .data-table td {
-    padding: 16px 12px;
-    font-size: 0.9rem;
-    color: #1e293b;
+    padding: 16px 24px;
+    color: #334155;
     border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+    transition: background-color 0.2s ease;
 }
 
-/* Status Badges */
+/* Row Hover Effect */
+.data-table tbody tr:hover {
+    background-color: #fcfdfe;
+}
+
+/* Status Badges - Pill Style */
 .status-badge {
     padding: 4px 12px;
-    border-radius: 6px;
+    border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 600;
+    display: inline-flex;
+    align-items: center;
 }
 
 .status-badge.pending {
-    background: #fff7ed;
-    color: #c2410c;
+    background: #fef9c3;
+    color: #713f12;
 }
 
 .status-badge.assigned {
-    background: #eff6ff;
-    color: #1d4ed8;
+    background: #dbeafe;
+    color: #1e40af;
 }
 
 .status-badge.completed {
-    background: #f0fdf4;
-    color: #15803d;
+    background: #dcfce7;
+    color: #166534;
 }
 
+/* Smooth Action Buttons */
 .btn-assign,
 .btn-details {
-    padding: 6px 12px;
+    padding: 6px 14px;
     border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    background: white;
+    font-size: 0.85rem;
+    font-weight: 500;
     cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: 600;
+    transition: all 0.2s ease;
 }
 
 .btn-assign {
-    margin-right: 8px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
+}
+
+.btn-assign:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.btn-details {
+    background: white;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-details:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
 }

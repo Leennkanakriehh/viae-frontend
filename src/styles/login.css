@@ -1,0 +1,108 @@
+.login-page-container {
+    background: #f4f7fe;
+    min-height: 100vh;
+    width: 100%;
+    transition: background 0.4s ease;
+}
+
+/* Role-based Theming */
+.theme-admin {
+    --theme-color: #0d6efd;
+    --theme-bg: linear-gradient(135deg, #0d6efd 0%, #0043a8 100%);
+}
+
+.theme-driver {
+    --theme-color: #fd7e14;
+    --theme-bg: linear-gradient(135deg, #fd7e14 0%, #d95a00 100%);
+}
+
+.login-card {
+    background: white;
+    border-radius: 24px;
+    max-width: 950px;
+    width: 100%;
+}
+
+.brand-side {
+    background: var(--theme-bg);
+}
+
+.text-theme {
+    color: var(--theme-color);
+}
+
+.badge-role {
+    background: #f0f2f5;
+    color: #444;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Custom Input Styling */
+.input-group-custom {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    color: #adb5bd;
+    z-index: 5;
+}
+
+.input-group-custom .form-control {
+    padding-left: 45px;
+    height: 50px;
+    border-radius: 12px;
+    border: 1px solid #e0e6ed;
+    background: #f9fbfd;
+}
+
+.input-group-custom .form-control:focus {
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+    border-color: var(--theme-color);
+}
+
+/* Button Styling */
+.btn-submit {
+    background: var(--theme-color) !important;
+    border: none !important;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-back {
+    border: none;
+    background: #f8f9fa;
+    color: #666;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.btn-back:hover {
+    background: #e9ecef;
+    color: #000;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .login-card {
+        max-width: 500px;
+    }
+}

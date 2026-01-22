@@ -1,0 +1,37 @@
+.not-found-wrapper {
+    background: radial-gradient(circle at top right, #f8f9ff 0%, #e9ecef 100%);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.error-content {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.icon-circle {
+    width: 120px;
+    height: 120px;
+    background: #fff5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.display-1 {
+    letter-spacing: -2px;
+}
+
+/* Ensure it looks great on small screens */
+@media (max-width: 576px) {
+    .error-content {
+        padding: 2.5rem 1.5rem !important;
+        margin: 0 15px;
+    }
+
+    .display-1 {
+        font-size: 4rem;
+    }
+}

@@ -1,113 +1,119 @@
-import "../styles/DriverProfile.css";
-import userIcon from "../assets/user1.png";
-import logoutIcon from "../assets/logout.png";
-import carIcon from "../assets/car.png";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { viaeContext } from "../ViaeContext";
+import VehicleManager from "./VehicleManager";
+import {
+    MDBContainer, MDBRow, MDBCol, MDBCard,
+    MDBCardBody, MDBBadge
+} from "mdb-react-ui-kit";
+import {
+    User, Mail, Phone,
+    Hash, Award, CheckCircle
+} from "lucide-react";
 
 export default function Profile() {
+    const { driverProfile, loadingDriverProfile } = useContext(viaeContext);
 
-    const { drivers } = useContext(viaeContext)
+    if (loadingDriverProfile) {
+        return (
+            <div className="d-flex flex-column justify-content-center align-items-center mt-5" style={{ minHeight: "60vh" }}>
+                <div className="spinner-border text-primary mb-3" role="status"></div>
+                <p className="text-muted">Loading your credentials...</p>
+            </div>
+        );
+    }
 
-    // These would typically come from your context
-    const driverData = {
-        id: "D001",
-        name: "John Smith",
-        email: "john.smith@example.com",
-        phone: "+1 (555) 123-4567",
-        vehicle: "Toyota Camry - ABC 1234",
-        totalRides: 145,
-        rating: 4.9,
-        memberSince: "Jan 2024",
-        status: "Online"
-    };
+    if (!driverProfile) {
+        return (
+            <div className="text-center mt-5 text-muted p-5">
+                <User size={48} className="mb-3 opacity-25" />
+                <h5>No driver profile found</h5>
+                <p>Please contact support if this is an error.</p>
+            </div>
+        );
+    }
+
+    const {
+        driver_code,
+        username,
+        email,
+        phone,
+        is_online,
+        total_rides,
+    } = driverProfile;
 
     return (
-        <div className="profile-page">
-            <header className="profile-header">
+        <MDBContainer fluid className="py-4 px-lg-5">
+            {/* Header Section */}
+            <div className="d-flex justify-content-between align-items-end mb-4">
                 <div>
-                    <h1>Profile</h1>
-                    <p>Manage your driver information</p>
+                    <h2 className="fw-bold mb-1">My Account</h2>
+                    <p className="text-muted mb-0">Manage your profile and vehicle details</p>
                 </div>
-                <span className="status-badge online">{driverData.status}</span>
-            </header>
-
-            <section className="profile-card info-section">
-                <div className="card-header">
-                    <h3>Driver Information</h3>
-                    <button className="btn-edit">Edit Profile</button>
-                </div>
-
-                <div className="info-grid">
-                    <div className="info-item full-width">
-                        <label>Driver ID</label>
-                        <p className="driver-id">{driverData.id}</p>
+                <MDBBadge
+                    pill
+                    className={`px-3 py-2 ${is_online ? 'bg-success-subtle text-success' : 'bg-light text-muted border'}`}
+                >
+                    <div className="d-flex align-items-center gap-2">
+                        <div className={`status-dot ${is_online ? 'pulse' : ''}`} style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'currentColor' }}></div>
+                        {is_online ? "Active Now" : "Currently Offline"}
                     </div>
+                </MDBBadge>
+            </div>
 
-                    <div className="info-item">
-                        <div className="item-content">
-                            <img src={userIcon} alt="" className="profile-field-icon" />
-                            <div>
-                                <label>Name</label>
-                                <p>{driverData.name}</p>
+            <MDBRow className="g-4">
+                {/* Left Column: Identity */}
+                <MDBCol lg={7}>
+                    <MDBCard className="border-0 shadow-sm rounded-4 h-100">
+                        <MDBCardBody className="p-4">
+                            <div className="d-flex align-items-center gap-2 mb-4">
+                                <User className="text-primary" size={20} />
+                                <h5 className="fw-bold mb-0 text-dark">Personal Information</h5>
                             </div>
-                        </div>
-                    </div>
 
-                    <div className="info-item">
-                        <div className="item-content">
-                            <span className="profile-field-icon">✉️</span>
-                            <div>
-                                <label>Email</label>
-                                <p>{driverData.email}</p>
+                            <MDBRow className="g-4">
+                                <ProfileItem icon={<Hash size={18} />} label="Driver ID" value={driver_code} />
+                                <ProfileItem icon={<User size={18} />} label="Full Name" value={username} />
+                                <ProfileItem icon={<Mail size={18} />} label="Email Address" value={email} />
+                                <ProfileItem icon={<Phone size={18} />} label="Phone Number" value={phone || "Not linked"} />
+                            </MDBRow>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+
+                {/* Right Column: Performance & Vehicle Management */}
+                <MDBCol lg={5}>
+                    {/* Performance Summary */}
+                    <MDBCard className="border-0 shadow-sm rounded-4 mb-4 bg-primary text-white">
+                        <MDBCardBody className="p-4">
+                            <div className="d-flex justify-content-between align-items-center mb-3">
+                                <Award size={32} className="opacity-75" />
+                                <span className="small text-uppercase fw-bold opacity-75">Driver Score</span>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="info-item">
-                        <div className="item-content">
-                            <span className="profile-field-icon">📞</span>
-                            <div>
-                                <label>Phone</label>
-                                <p>{driverData.phone}</p>
+                            <h3 className="fw-bold mb-1">Expert Level</h3>
+                            <p className="small mb-4 opacity-75">You've completed {total_rides} total trips</p>
+                            <div className="d-flex align-items-center gap-2">
+                                <CheckCircle size={16} />
+                                <span className="small fw-medium">Identity Verified</span>
                             </div>
-                        </div>
-                    </div>
+                        </MDBCardBody>
+                    </MDBCard>
 
-                    <div className="info-item">
-                        <div className="item-content">
-                            <img src={carIcon} alt="" className="profile-field-icon" />
-                            <div>
-                                <label>Vehicle</label>
-                                <p>{driverData.vehicle}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                    {/* VEHICLE MANAGEMENT SECTION */}
+                    <VehicleManager />
+                </MDBCol>
+            </MDBRow>
+        </MDBContainer>
+    );
+}
 
-            <section className="profile-card stats-section">
-                <h3>Statistics</h3>
-                <div className="stats-row">
-                    <div className="stat-box">
-                        <label>Total Rides</label>
-                        <p className="stat-number">{driverData.totalRides}</p>
-                    </div>
-                    <div className="stat-box">
-                        <label>Rating</label>
-                        <p className="stat-number">{driverData.rating} <span className="star">⭐</span></p>
-                    </div>
-                    <div className="stat-box">
-                        <label>Member Since</label>
-                        <p className="stat-number">{driverData.memberSince}</p>
-                    </div>
-                </div>
-            </section>
-
-            <button className="btn-logout-footer">
-                <img src={logoutIcon} alt="" className="footer-icon" />
-                Logout
-            </button>
-        </div>
+function ProfileItem({ icon, label, value }) {
+    return (
+        <MDBCol md={6}>
+            <label className="text-uppercase small fw-bold text-muted d-block mb-1">{label}</label>
+            <div className="d-flex align-items-center gap-2">
+                <span className="text-primary opacity-50">{icon}</span>
+                <span className="fw-medium text-dark">{value}</span>
+            </div>
+        </MDBCol>
     );
 }

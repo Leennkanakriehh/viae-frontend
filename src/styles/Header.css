@@ -1,79 +1,69 @@
-/* Header.css */
-
-.dashboard-nav {
-    background-color: #ffffff;
-    border-bottom: 1px solid #f1f5f9;
-    padding: 0.6rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+/* Navbar general style */
+.header-smooth {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 }
 
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-logo {
-    height: 28px;
-    width: auto;
-    display: block;
-}
-
-.nav-right {
+/* Nav Link Pill Styling */
+.nav-pill-link {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-}
-
-.nav-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    /* Space between image icon and text */
-    padding: 0.6rem 1.2rem;
-    text-decoration: none;
-    color: #475569;
-    font-weight: 500;
-    font-size: 0.95rem;
+    gap: 8px;
+    padding: 8px 16px;
     border-radius: 10px;
+    text-decoration: none;
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 500;
     transition: all 0.2s ease;
 }
 
-/* Icon Sizing */
-.nav-icon-img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-    opacity: 0.7;
-    /* Slightly muted when not active */
+.nav-pill-link:hover:not(.disabled-link) {
+    background-color: #f1f5f9;
+    color: #1e293b;
 }
 
-/* Active State Styles */
-.nav-btn.active {
+.nav-pill-link.active {
     background-color: #eff6ff;
-    /* Soft blue background from your design */
     color: #2563eb;
-    /* Brand blue text */
 }
 
-.nav-btn.active .nav-icon-img {
-    opacity: 1;
-    /* Use this filter to turn a black PNG into the Blue #2563eb */
-    filter: invert(31%) sepia(94%) saturate(1814%) hue-rotate(213deg) brightness(96%) contrast(105%);
+.nav-pill-link.disabled-link {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
-.nav-btn:hover:not(.active) {
-    background-color: #f8fafc;
+/* Status Badges */
+.status-badge-smooth {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
 }
 
-.logout {
-    margin-left: 0.5rem;
-    border-left: 1px solid #f1f5f9;
-    padding-left: 1.5rem;
-    border-radius: 0;
-    /* Keep the divider look */
+.status-badge-smooth.approved {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-badge-smooth.pending {
+    background-color: #fef9c3;
+    color: #854d0e;
+}
+
+.status-badge-smooth.rejected {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Logout Button */
+.logout-btn-smooth {
+    color: #ef4444;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.logout-btn-smooth:hover {
+    background-color: #fef2f2;
 }
