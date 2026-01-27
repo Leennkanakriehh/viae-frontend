@@ -1,13 +1,13 @@
 # Viae Frontend (React + Vite)
 ```
-## 📌 Description
+## Description
 
 The Viae frontend provides a modern and responsive user interface for a role-based fleet and ride management system. It enables authenticated users to interact with the platform through dashboards tailored to their roles, supporting efficient management of drivers, rides, and availability within an organization.
 
 The frontend is responsible for handling user interactions, role-based navigation, and communication with backend APIs, ensuring a secure and user-friendly experience for both administrators and drivers.
 ```
 
-## 🎯 Application Idea – Viae (Frontend Perspective)
+## Application Idea – Viae (Frontend Perspective)
 ```
 ### System Overview
 
@@ -21,7 +21,7 @@ The overall system follows a full-stack architecture consisting of:
 
 ```
 
-## 👥 Target Users (Frontend)
+## Target Users (Frontend)
 ```
 ### System Administrators
 - Manage and approve pending driver applications
@@ -37,7 +37,7 @@ The overall system follows a full-stack architecture consisting of:
 - Interact with ride actions such as starting or completing rides
 ```
 
-## 🧾 User Requirements (Frontend)
+## User Requirements (Frontend)
 
 ### Admin Requirements
 - Create an account and log in securely using email and password
@@ -61,7 +61,7 @@ The overall system follows a full-stack architecture consisting of:
 
 
 
-## 🛠 Technologies Used (Frontend)
+## Technologies Used (Frontend)
 
 - **React.js** – Component-based frontend framework
 - **Vite** – Fast development server and build tool
@@ -73,7 +73,7 @@ The overall system follows a full-stack architecture consisting of:
 
 ---
 
-## 🚀 Getting Started (Frontend)
+## Getting Started (Frontend)
 
 Follow the steps below to run the frontend application locally:
 
